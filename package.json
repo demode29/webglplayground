@@ -1,0 +1,16 @@
+{
+    "name": "webglplayground",
+    "version": "1.0.0",
+    "description": "Very messy webgl playground",
+    "type": "module",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "build": "rollup -c",
+      "dev": "rollup -c -w"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+      "rollup": "^3.23.0"
+    }
+  }
