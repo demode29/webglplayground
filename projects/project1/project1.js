@@ -1,5 +1,10 @@
 import Mesh from "../../utils/Mesh";
 import MathUtil from "../../utils/MathUtil";
+import Geometries from "../../utils/geometries";
+
+const createTetrahedronCommand = () => {};
+const createSphereCommand = () => {};
+
 const init = () => {
   const canvas = document.querySelector("#main_canvas");
 
@@ -54,7 +59,7 @@ const init = () => {
 
   let aspectRatio = gl.canvas.width / gl.canvas.height;
 
-  const tetrahedron = generateTetrahedron();
+  const tetrahedron = Geometries.generateTetrahedron();
 
   const tetrahedronCommandInfo = {
     primitiveType: gl.LINES,
@@ -71,10 +76,14 @@ const init = () => {
 
   const boundingPoints = Mesh.calculateBoundingSphere(tetrahedron.mesh);
 
-  const tesselatedSphere = tesellateTetrahedron(tetrahedron.mesh, 3, {
-    radius: boundingPoints.radius,
-    center: boundingPoints.center,
-  });
+  const tesselatedSphere = Geometries.tesellateTetrahedron(
+    tetrahedron.mesh,
+    3,
+    {
+      radius: boundingPoints.radius,
+      center: boundingPoints.center,
+    }
+  );
 
   const tesselatedSphereCommandInfo = {
     primitiveType: gl.TRIANGLES,
@@ -189,19 +198,19 @@ const init = () => {
     gl.enable(gl.CULL_FACE);
     let viewMatrix;
 
-    const eulerRotationMatrix = createEulerRotationMatrix(
+    const eulerRotationMatrix = MathUtil.createEulerRotationMatrix(
       currentRotationParams.rotationX,
       currentRotationParams.rotationY,
       currentRotationParams.rotationZ
     );
 
-    const translationMatrix = createTranslationMatrix(
+    const translationMatrix = MathUtil.createTranslationMatrix(
       currentTranslationParams.translationX,
       currentTranslationParams.translationY,
       currentTranslationParams.translationZ
     );
 
-    const scaleMatrix = createScaleMatrix(
+    const scaleMatrix = MathUtil.createScaleMatrix(
       currentScaleParams.scaleX,
       currentScaleParams.scaleY,
       currentScaleParams.scaleZ
@@ -228,7 +237,7 @@ const init = () => {
 
     // useSphereProgram(gl, sphereProgramParameters, useIndexedBuffer);
 
-    viewMatrix = createOrtographicMatrix(
+    viewMatrix = MathUtil.createOrtographicMatrix(
       -10.0 * aspectRatio,
       10.0 * aspectRatio,
       -10.0,
@@ -237,11 +246,11 @@ const init = () => {
       10.0
     );
 
-    viewMatrix = multiplyMatrix(viewMatrix, translationMatrix);
-    viewMatrix = multiplyMatrix(viewMatrix, eulerRotationMatrix);
-    viewMatrix = multiplyMatrix(viewMatrix, scaleMatrix);
+    viewMatrix = MathUtil.multiplyMatrix(viewMatrix, translationMatrix);
+    viewMatrix = MathUtil.multiplyMatrix(viewMatrix, eulerRotationMatrix);
+    viewMatrix = MathUtil.multiplyMatrix(viewMatrix, scaleMatrix);
 
-    viewMatrix = transposeMatrix(viewMatrix);
+    viewMatrix = MathUtil.transposeMatrix(viewMatrix);
 
     // TODO: implement instancing for points
 

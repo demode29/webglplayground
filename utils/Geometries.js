@@ -245,4 +245,4 @@ const tesellateTetrahedron = (tetrahedron, step, info) => {
   };
 };
 
-export { generateTetrahedron, tesellateTetrahedron };
+export default { generateTetrahedron, tesellateTetrahedron };
