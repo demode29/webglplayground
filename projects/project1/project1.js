@@ -1,9 +1,23 @@
 import Mesh from "../../utils/Mesh";
 import MathUtil from "../../utils/MathUtil";
-import Geometries from "../../utils/geometries";
+import Geometries from "../../utils/Geometries";
 
 const createTetrahedronCommand = () => {};
 const createSphereCommand = () => {};
+
+const resizeCanvasToDisplaySize = (canvas) => {
+  let isResized = false;
+  if (canvas.width !== canvas.clientWidth) {
+    canvas.width = canvas.clientWidth;
+    isResized = true;
+  }
+  if (canvas.height !== canvas.clientHeight) {
+    canvas.height = canvas.clientHeight;
+    isResized = true;
+  }
+
+  return isResized;
+};
 
 const init = () => {
   const canvas = document.querySelector("#main_canvas");
@@ -99,44 +113,6 @@ const init = () => {
 
   commandList.push(sphereCommand);
 
-  // offset
-  //     1.0, // num vertices per instance
-  //     Math.floor(pointCounter / 2.0), // num instances
-  const points = generatePoints();
-  const pointCounter = 0;
-  const instancedPointCommand = {
-    primitiveType: gl.POINTS,
-    offset: 0,
-    instanceCount: Math.floor(pointCounter / 2.0),
-    instanced: true,
-    verticePerInstance: 1.0,
-  };
-
-  // just create command but do not push to command list since we will render point when user requests it
-  const pointCommand = createPointCommand(gl, points, instancedPointCommand);
-
-  // loadTexture(gl);
-  // const useIndexedBuffer = false;
-  // const pointArray = new Float32Array(3);
-  // pointArray[0] = 0.0;
-  // pointArray[1] = 0.0;
-  // pointArray[2] = -1.0;
-  // const translatePoints = new Float32Array(10000);
-  // let pointCounter = 0;
-
-  // const pointProgramParameters = preparePointProgram(gl, pointArray, translatePoints);
-
-  // create a scene texture
-  // const targetTexture = gl.createTexture();
-  // gl.bindTexture(gl.TEXTURE_2D, targetTexture);
-  // gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-  // gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-  // gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-
-  // // create a depth renderbuffer
-  // const depthBuffer = gl.createRenderbuffer();
-  // gl.bindRenderbuffer(gl.RENDERBUFFER, depthBuffer);
-
   const setFramebufferAttachmentSizes = (width, height) => {
     gl.bindTexture(gl.TEXTURE_2D, targetTexture);
     // define size and format of level 0
@@ -166,17 +142,6 @@ const init = () => {
       height
     );
   };
-  // Create and bind the framebuffer
-  // const fb = gl.createFramebuffer();
-  // gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
-
-  // attach the texture as the first color attachment
-  // const attachmentPoint = gl.COLOR_ATTACHMENT0;
-  // const level = 0;
-  // gl.framebufferTexture2D(gl.FRAMEBUFFER, attachmentPoint, gl.TEXTURE_2D, targetTexture, level);
-
-  // make a depth buffer and the same size as the targetTexture
-  // gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, depthBuffer);
 
   const render = () => {
     if (resizeCanvasToDisplaySize(gl.canvas)) {
@@ -439,9 +404,9 @@ const init = () => {
       // const pointCoordinates = new Float32Array(clipCoordinates.length);
 
       // drawPoints[pointCounter++] = clipCoordinates[0];
-      pointProgramParameters.attributeValues.translate[pointCounter++] = ndcX;
+      // pointProgramParameters.attributeValues.translate[pointCounter++] = ndcX;
       // drawPoints[pointCounter++] = clipCoordinates[1];
-      pointProgramParameters.attributeValues.translate[pointCounter++] = ndcY;
+      // pointProgramParameters.attributeValues.translate[pointCounter++] = ndcY;
       // TODO: if translate size grows than 1000 repreare array
       // pointProgramParameters.attributeValues.translate[pointCounter++] = clipCoordinates[2];
       // drawPoints[pointCounter++] = clipCoordinates[2];
@@ -486,3 +451,5 @@ const init = () => {
   // one pass render
   // render();
 };
+
+init();

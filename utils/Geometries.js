@@ -1,4 +1,5 @@
 import Mesh from "./Mesh";
+import MathUtil from "./MathUtil";
 
 const generateTetrahedron = () => {
   const mesh = new Mesh();
@@ -54,68 +55,68 @@ const recursivelySubdivide = (
   const vertex1 = currentVertices[1];
   const vertex2 = currentVertices[2];
 
-  const reverseTranslater = createTranslationMatrix(
+  const reverseTranslater = MathUtil.createTranslationMatrix(
     -translater[3],
     -translater[7],
     -translater[11]
   );
-  const reverseScalar = createScaleMatrix(
+  const reverseScalar = MathUtil.createScaleMatrix(
     1 / scalar[0],
     1 / scalar[5],
     1 / scalar[10]
   );
 
-  const reversedTranslatedVertex0 = multiplyMatrixAndPoint(
+  const reversedTranslatedVertex0 = MathUtil.multiplyMatrixAndPoint(
     reverseTranslater,
     vertex0
   );
-  const reversedVertex0 = multiplyMatrixAndPoint(
+  const reversedVertex0 = MathUtil.multiplyMatrixAndPoint(
     reverseScalar,
     reversedTranslatedVertex0
   );
 
-  const reversedTranslatedVertex1 = multiplyMatrixAndPoint(
+  const reversedTranslatedVertex1 = MathUtil.multiplyMatrixAndPoint(
     reverseTranslater,
     vertex1
   );
-  const reversedVertex1 = multiplyMatrixAndPoint(
+  const reversedVertex1 = MathUtil.multiplyMatrixAndPoint(
     reverseScalar,
     reversedTranslatedVertex1
   );
 
-  const reversedTranslatedVertex2 = multiplyMatrixAndPoint(
+  const reversedTranslatedVertex2 = MathUtil.multiplyMatrixAndPoint(
     reverseTranslater,
     vertex2
   );
-  const reversedVertex2 = multiplyMatrixAndPoint(
+  const reversedVertex2 = MathUtil.multiplyMatrixAndPoint(
     reverseScalar,
     reversedTranslatedVertex2
   );
 
-  const midPoint0 = normalizeVector(
-    calculateMidPoint(reversedVertex0, reversedVertex1)
+  const midPoint0 = MathUtil.normalizeVector(
+    MathUtil.calculateMidPoint(reversedVertex0, reversedVertex1)
   );
 
-  const midPoint1 = normalizeVector(
-    calculateMidPoint(reversedVertex1, reversedVertex2)
+  const midPoint1 = MathUtil.normalizeVector(
+    MathUtil.calculateMidPoint(reversedVertex1, reversedVertex2)
   );
 
-  const midPoint2 = normalizeVector(
-    calculateMidPoint(reversedVertex0, reversedVertex2)
+  const midPoint2 = MathUtil.normalizeVector(
+    MathUtil.calculateMidPoint(reversedVertex0, reversedVertex2)
   );
 
-  const scaledMidPoint0 = multiplyMatrixAndPoint(scalar, midPoint0);
-  const translatedMidPoint0 = multiplyMatrixAndPoint(
+  const scaledMidPoint0 = MathUtil.multiplyMatrixAndPoint(scalar, midPoint0);
+  const translatedMidPoint0 = MathUtil.multiplyMatrixAndPoint(
     translater,
     scaledMidPoint0
   );
-  const scaledMidPoint1 = multiplyMatrixAndPoint(scalar, midPoint1);
-  const translatedMidPoint1 = multiplyMatrixAndPoint(
+  const scaledMidPoint1 = MathUtil.multiplyMatrixAndPoint(scalar, midPoint1);
+  const translatedMidPoint1 = MathUtil.multiplyMatrixAndPoint(
     translater,
     scaledMidPoint1
   );
-  const scaledMidPoint2 = multiplyMatrixAndPoint(scalar, midPoint2);
-  const translatedMidPoint2 = multiplyMatrixAndPoint(
+  const scaledMidPoint2 = MathUtil.multiplyMatrixAndPoint(scalar, midPoint2);
+  const translatedMidPoint2 = MathUtil.multiplyMatrixAndPoint(
     translater,
     scaledMidPoint2
   );
@@ -204,8 +205,12 @@ const tesellateTetrahedron = (tetrahedron, step, info) => {
 
   const resultMesh = new Mesh();
   const { radius, center } = info;
-  const translater = createTranslationMatrix(center[0], center[1], center[2]);
-  const scaler = createScaleMatrix(radius, radius, radius);
+  const translater = MathUtil.createTranslationMatrix(
+    center[0],
+    center[1],
+    center[2]
+  );
+  const scaler = MathUtil.createScaleMatrix(radius, radius, radius);
 
   faces.forEach((face) => {
     const verticeIndex0 = face[0];
@@ -216,12 +221,21 @@ const tesellateTetrahedron = (tetrahedron, step, info) => {
     const vertice1 = vertices[verticeIndex1];
     const vertice2 = vertices[verticeIndex2];
 
-    const scaledPoint0 = multiplyMatrixAndPoint(scaler, vertice0);
-    const translatedPoint0 = multiplyMatrixAndPoint(translater, scaledPoint0);
-    const scaledPoint1 = multiplyMatrixAndPoint(scaler, vertice1);
-    const translatedPoint1 = multiplyMatrixAndPoint(translater, scaledPoint1);
-    const scaledPoint2 = multiplyMatrixAndPoint(scaler, vertice2);
-    const translatedPoint2 = multiplyMatrixAndPoint(translater, scaledPoint2);
+    const scaledPoint0 = MathUtil.multiplyMatrixAndPoint(scaler, vertice0);
+    const translatedPoint0 = MathUtil.multiplyMatrixAndPoint(
+      translater,
+      scaledPoint0
+    );
+    const scaledPoint1 = MathUtil.multiplyMatrixAndPoint(scaler, vertice1);
+    const translatedPoint1 = MathUtil.multiplyMatrixAndPoint(
+      translater,
+      scaledPoint1
+    );
+    const scaledPoint2 = MathUtil.multiplyMatrixAndPoint(scaler, vertice2);
+    const translatedPoint2 = MathUtil.multiplyMatrixAndPoint(
+      translater,
+      scaledPoint2
+    );
 
     const triangle1 = [translatedPoint0, translatedPoint1, translatedPoint2];
     recursivelySubdivide(triangle1, step, resultMesh, scaler, translater);
