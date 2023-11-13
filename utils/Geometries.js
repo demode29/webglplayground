@@ -278,6 +278,11 @@ const generatePlane = (width, height) => {
   mesh.addTriangle(v0Indice, v2Indice, v1Indice);
   mesh.addTriangle(v2Indice, v3Indice, v1Indice);
 
+  const faceColors = [
+    [1.0, 0.0, 0.0, 1.0],
+    [1.0, 0.0, 0.0, 1.0],
+  ];
+
   const test = Mesh.prepareForShader(mesh, faceColors, false);
 
   return {

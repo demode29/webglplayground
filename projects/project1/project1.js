@@ -69,6 +69,67 @@ const createTetrahedronCommand = (gl, tetrahedron, commandInfo) => {
 
 const createSphereCommand = () => {};
 
+const createPlaneCommand = (gl, plane, commandInfo) => {
+  const program = initShaders(gl, "vertex-shader-2d", "fragment-shader-2d");
+  const positionAttributeLocation = gl.getAttribLocation(program, "a_position");
+  const colorAttributeLocation = gl.getAttribLocation(program, "a_color");
+  // const texcoordLocation = gl.getAttribLocation(program, "a_texcoord");
+  const matrixAttributeLocation = gl.getUniformLocation(program, "u_matrix");
+  const positionBuffer = new VertexBuffer(
+    gl,
+    plane.vertices,
+    gl.ARRAY_BUFFER,
+    gl.STATIC_DRAW
+  );
+  const colorBuffer = new VertexBuffer(
+    gl,
+    plane.colors,
+    gl.ARRAY_BUFFER,
+    gl.STATIC_DRAW
+  );
+
+  const attributes = [
+    {
+      index: positionAttributeLocation,
+      componentsPerAttribute: 3,
+      componentDatatype: gl.FLOAT,
+      normalize: false,
+      strideInBytes: 0,
+      offsetInBytes: 0,
+      buffer: positionBuffer.vertexBuffer,
+    },
+    {
+      index: colorAttributeLocation,
+      componentsPerAttribute: 4,
+      componentDatatype: gl.FLOAT,
+      normalize: false,
+      strideInBytes: 0,
+      offsetInBytes: 0,
+      buffer: colorBuffer.vertexBuffer,
+    },
+  ];
+
+  const uniforms = [
+    {
+      index: matrixAttributeLocation,
+      name: "u_matrix",
+      set: (value) => {
+        gl.uniformMatrix4fv(matrixAttributeLocation, false, value);
+      },
+    },
+  ];
+
+  const vertexArray = new VertexArray(gl, attributes);
+  const newDrawCommand = new DrawCommand(
+    program,
+    vertexArray,
+    commandInfo,
+    uniforms
+  );
+
+  return newDrawCommand;
+};
+
 const resizeCanvasToDisplaySize = (canvas) => {
   let isResized = false;
   if (canvas.width !== canvas.clientWidth) {
@@ -151,6 +212,19 @@ const init = () => {
   );
 
   commandList.push(tetrahedronCommand);
+
+  // generating plane
+  const plane = Geometries.generatePlane(1.0, 1.0);
+
+  const planeCommandInfo = {
+    primitiveType: gl.TRIANGLES,
+    offset: 0,
+    count: plane.vertices.length / 3,
+  };
+
+  const planeCommand = createPlaneCommand(gl, plane, planeCommandInfo);
+
+  commandList.push(planeCommand);
 
   // const boundingPoints = Mesh.calculateBoundingSphere(tetrahedron.mesh);
 
