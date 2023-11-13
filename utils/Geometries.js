@@ -259,4 +259,32 @@ const tesellateTetrahedron = (tetrahedron, step, info) => {
   };
 };
 
-export default { generateTetrahedron, tesellateTetrahedron };
+const generatePlane = (width, height) => {
+  const halfWidth = width / 2.0;
+  const halfHeight = height / 2.0;
+
+  const v0 = [-halfWidth, -halfHeight, 0.0];
+  const v1 = [-halfWidth, halfHeight, 0.0];
+  const v2 = [halfWidth, -halfHeight, 0.0];
+  const v3 = [halfWidth, halfHeight, 0.0];
+
+  const mesh = new Mesh();
+
+  const v0Indice = mesh.addVertex(v0);
+  const v1Indice = mesh.addVertex(v1);
+  const v2Indice = mesh.addVertex(v2);
+  const v3Indice = mesh.addVertex(v3);
+
+  mesh.addTriangle(v0Indice, v2Indice, v1Indice);
+  mesh.addTriangle(v2Indice, v3Indice, v1Indice);
+
+  const test = Mesh.prepareForShader(mesh, faceColors, false);
+
+  return {
+    vertices: test.shaderVertices,
+    indices: test.shaderIndices,
+    colors: test.shaderVertexColors,
+    mesh,
+  };
+};
+export default { generateTetrahedron, tesellateTetrahedron, generatePlane };

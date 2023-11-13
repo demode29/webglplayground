@@ -7,7 +7,7 @@ export default class VertexArray {
         indexBuffer: undefined,
       };
     }
-    this.indexBuffer = additionals.indexBuffer;
+    // this.indexBuffer = additionals.indexBuffer;
     this.gl = gl;
 
     gl.bindVertexArray(this.vao);

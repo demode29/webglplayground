@@ -1,8 +1,72 @@
 import Mesh from "../../utils/Mesh";
 import MathUtil from "../../utils/MathUtil";
 import Geometries from "../../utils/Geometries";
+import initShaders from "../../utils/Common/initShaders";
+import VertexBuffer from "../../utils/VertexBuffer";
+import VertexArray from "../../utils/VertexArray";
+import DrawCommand from "../../utils/DrawCommand";
 
-const createTetrahedronCommand = () => {};
+const createTetrahedronCommand = (gl, tetrahedron, commandInfo) => {
+  const program = initShaders(gl, "vertex-shader-2d", "fragment-shader-2d");
+  const positionAttributeLocation = gl.getAttribLocation(program, "a_position");
+  const colorAttributeLocation = gl.getAttribLocation(program, "a_color");
+  // const texcoordLocation = gl.getAttribLocation(program, "a_texcoord");
+  const matrixAttributeLocation = gl.getUniformLocation(program, "u_matrix");
+  const positionBuffer = new VertexBuffer(
+    gl,
+    tetrahedron.vertices,
+    gl.ARRAY_BUFFER,
+    gl.STATIC_DRAW
+  );
+  const colorBuffer = new VertexBuffer(
+    gl,
+    tetrahedron.colors,
+    gl.ARRAY_BUFFER,
+    gl.STATIC_DRAW
+  );
+
+  const attributes = [
+    {
+      index: positionAttributeLocation,
+      componentsPerAttribute: 3,
+      componentDatatype: gl.FLOAT,
+      normalize: false,
+      strideInBytes: 0,
+      offsetInBytes: 0,
+      buffer: positionBuffer.vertexBuffer,
+    },
+    {
+      index: colorAttributeLocation,
+      componentsPerAttribute: 4,
+      componentDatatype: gl.FLOAT,
+      normalize: false,
+      strideInBytes: 0,
+      offsetInBytes: 0,
+      buffer: colorBuffer.vertexBuffer,
+    },
+  ];
+
+  const uniforms = [
+    {
+      index: matrixAttributeLocation,
+      name: "u_matrix",
+      set: (value) => {
+        gl.uniformMatrix4fv(matrixAttributeLocation, false, value);
+      },
+    },
+  ];
+
+  const vertexArray = new VertexArray(gl, attributes);
+  const newDrawCommand = new DrawCommand(
+    program,
+    vertexArray,
+    commandInfo,
+    uniforms
+  );
+
+  return newDrawCommand;
+};
+
 const createSphereCommand = () => {};
 
 const resizeCanvasToDisplaySize = (canvas) => {
@@ -88,30 +152,30 @@ const init = () => {
 
   commandList.push(tetrahedronCommand);
 
-  const boundingPoints = Mesh.calculateBoundingSphere(tetrahedron.mesh);
+  // const boundingPoints = Mesh.calculateBoundingSphere(tetrahedron.mesh);
 
-  const tesselatedSphere = Geometries.tesellateTetrahedron(
-    tetrahedron.mesh,
-    3,
-    {
-      radius: boundingPoints.radius,
-      center: boundingPoints.center,
-    }
-  );
+  // const tesselatedSphere = Geometries.tesellateTetrahedron(
+  //   tetrahedron.mesh,
+  //   3,
+  //   {
+  //     radius: boundingPoints.radius,
+  //     center: boundingPoints.center,
+  //   }
+  // );
 
-  const tesselatedSphereCommandInfo = {
-    primitiveType: gl.TRIANGLES,
-    offset: 0,
-    count: tesselatedSphere.vertices.length / 3,
-  };
+  // const tesselatedSphereCommandInfo = {
+  //   primitiveType: gl.TRIANGLES,
+  //   offset: 0,
+  //   count: tesselatedSphere.vertices.length / 3,
+  // };
 
-  const sphereCommand = createSphereCommand(
-    gl,
-    tesselatedSphere,
-    tesselatedSphereCommandInfo
-  );
+  // const sphereCommand = createSphereCommand(
+  //   gl,
+  //   tesselatedSphere,
+  //   tesselatedSphereCommandInfo
+  // );
 
-  commandList.push(sphereCommand);
+  // commandList.push(sphereCommand);
 
   const setFramebufferAttachmentSizes = (width, height) => {
     gl.bindTexture(gl.TEXTURE_2D, targetTexture);
