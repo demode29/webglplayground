@@ -6,7 +6,7 @@ I work on GIS and 3D visualization. This repo is how I keep the underlying math 
 
 The story I want this GitHub to tell:
 
-**I understand the math → I understand the graphics pipeline → I can use the GPU → I can build a GIS renderer.**
+**I understand the math → I understand the graphics pipeline → I can use the GPU → I can stream a map → I can stream a city.**
 
 ## Phase 1 — Graphics math
 
@@ -34,11 +34,19 @@ Book: Tomas Akenine-Möller, Eric Haines, Naty Hoffman, *Real-Time Rendering*.
 
 Instancing, culling, LOD, shadow mapping, normal mapping, picking on the GPU. Not started.
 
-## Phase 4 — Systems project
+## Phase 4 — Vector tiles
 
 [`tiny-vector-renderer`](./tiny-vector-renderer): MVT → WASM → geometry processing → WebGL.
 
-WASM prepares buffers. WebGL paints. That split is the point.
+A map tile is protobuf before it is pixels. WASM prepares buffers. WebGL paints. That split is the point.
+
+## Phase 5 — 3D Tiles
+
+A city is not one glTF. It is a tree of bounding volumes that decide what you are allowed to see.
+
+Same split as vector tiles, in 3D: traverse and refine on the CPU (HLOD, spheres/OBBs, SSE), draw the content (glTF, meshes, points) on the GPU. Phase 3’s culling and LOD stop being demos and become a spatial index over the world.
+
+Spec to study: OGC 3D Tiles. [Brief](./3d-tiles). Not started. I implement this.
 
 ## Scratch
 

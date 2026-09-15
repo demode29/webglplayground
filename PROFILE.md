@@ -12,7 +12,7 @@ I care less about collecting tools than about making spatial software honest: co
 
 **Maps are arguments, not pictures.** A GIS view is a claim about the world. Projection, scale, and symbolization are editorial choices. I try to keep those choices visible in the software, because a beautiful map that lies is worse than a plain one that does not.
 
-**3D is a spatial problem before it is a graphics problem.** Cameras, ellipsoids, terrain, and picking are geometry. Shaders come after. When something looks wrong on a globe, I ask where the point actually is, not which uniform I forgot. [webglplayground](https://github.com/demode29/webglplayground) is a study series for that habit: math, then the pipeline, then the GPU, then a GIS renderer.
+**3D is a spatial problem before it is a graphics problem.** Cameras, ellipsoids, terrain, and picking are geometry. Shaders come after. When something looks wrong on a globe, I ask where the point actually is, not which uniform I forgot. [webglplayground](https://github.com/demode29/webglplayground) is a study series for that habit: math, then the pipeline, then the GPU, then streaming maps and 3D Tiles.
 
 **TypeScript is for the shapes that must not blur.** In geospatial code, a lon/lat pair, a projected meter, and a clip-space vertex can all look like `{ x, y }`. I use types to keep those from silently swapping places. The interesting part is the model, not the generics.
 
@@ -22,7 +22,7 @@ I care less about collecting tools than about making spatial software honest: co
 
 Most of my GIS and TypeScript work sits in professional code, so this profile is small on purpose.
 
-- [webglplayground](https://github.com/demode29/webglplayground) — a cited study series aimed at a vector-tile renderer. I implement the math myself.
+- [webglplayground](https://github.com/demode29/webglplayground) — a cited study series aimed at vector tiles and 3D Tiles. I implement the math myself.
 - [tiny-vector-renderer](https://github.com/demode29/webglplayground/tree/main/tiny-vector-renderer) — Phase 4 of that series: CPU prepares geometry, WebGL paints it.
 
 ## Currently
