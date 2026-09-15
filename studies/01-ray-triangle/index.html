@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ray–triangle intersection</title>
+    <link rel="stylesheet" href="../shared/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav><a href="../index.html">Studies</a></nav>
+      <h1>Ray–triangle intersection</h1>
+      <p>
+        A click is a window coordinate. Picking is a ray. The triangle answers
+        with barycentric coordinates, or it answers no.
+      </p>
+      <p class="cite">
+        Implemented while studying lines, rays, and planes in Eric Lengyel,
+        <em>Foundations of Game Engine Development, Volume 1: Mathematics</em>
+        (Ch. 3), and vector geometry in Fletcher Dunn &amp; Ian Parberry,
+        <em>3D Math Primer for Graphics and Game Development</em>. Intersection
+        and visualization are my own — not book code or figures.
+      </p>
+    </header>
+    <canvas></canvas>
+    <div class="hud" id="hud"></div>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

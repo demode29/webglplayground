@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Camera / view matrix</title>
+    <link rel="stylesheet" href="../shared/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav><a href="../index.html">Studies</a></nav>
+      <h1>Camera / view matrix</h1>
+      <p>
+        The camera is not a picture. It is a change of basis: world points
+        written in a frame that sits at the eye, looks at the target, and treats
+        “up” as a vector you chose. Projection is the lens. View is the pose.
+      </p>
+      <p class="cite">
+        Implemented while studying Chapter 2 (Transforms, coordinate spaces) of
+        Eric Lengyel,
+        <em>Foundations of Game Engine Development, Volume 1: Mathematics</em>,
+        and the camera / matrix chapters of Fletcher Dunn &amp; Ian Parberry,
+        <em>3D Math Primer for Graphics and Game Development</em>. The orbiting
+        scene is my own.
+      </p>
+    </header>
+    <canvas style="cursor: grab"></canvas>
+    <div class="hud" id="hud"></div>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

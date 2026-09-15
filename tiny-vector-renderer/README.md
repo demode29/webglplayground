@@ -1,5 +1,7 @@
 # tiny-vector-renderer
 
+This is Phase 4 of the [playground](../README.md): the systems project after the math studies.
+
 A map is not an image with coordinates glued on. It is a binary tile that has to become triangles, then a picture, then something you can point at.
 
 This is a small place to work on that sentence. GIS, TypeScript, WebGL, and later WebAssembly — not as a stack list, but as one pipeline.

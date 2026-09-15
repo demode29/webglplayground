@@ -12,7 +12,7 @@ I care less about collecting tools than about making spatial software honest: co
 
 **Maps are arguments, not pictures.** A GIS view is a claim about the world. Projection, scale, and symbolization are editorial choices. I try to keep those choices visible in the software, because a beautiful map that lies is worse than a plain one that does not.
 
-**3D is a spatial problem before it is a graphics problem.** Cameras, ellipsoids, terrain, and picking are geometry. Shaders come after. When something looks wrong on a globe, I ask where the point actually is, not which uniform I forgot. [webglplayground](https://github.com/demode29/webglplayground) is a messy notebook for that habit: meshes, draw commands, transforms, and the start of a picking ray, written without a big engine in the way.
+**3D is a spatial problem before it is a graphics problem.** Cameras, ellipsoids, terrain, and picking are geometry. Shaders come after. When something looks wrong on a globe, I ask where the point actually is, not which uniform I forgot. [webglplayground](https://github.com/demode29/webglplayground) is a study series for that habit: math, then the pipeline, then the GPU, then a GIS renderer.
 
 **TypeScript is for the shapes that must not blur.** In geospatial code, a lon/lat pair, a projected meter, and a clip-space vertex can all look like `{ x, y }`. I use types to keep those from silently swapping places. The interesting part is the model, not the generics.
 
@@ -22,15 +22,11 @@ I care less about collecting tools than about making spatial software honest: co
 
 Most of my GIS and TypeScript work sits in professional code, so this profile is small on purpose.
 
-- [webglplayground](https://github.com/demode29/webglplayground) — public notes on WebGL and 3D, written to understand the pipeline rather than to ship a viewer.
-- [tiny-vector-renderer](https://github.com/demode29/webglplayground/tree/main/tiny-vector-renderer) — a small vector-tile pipeline: CPU prepares geometry, WebGL paints it. WASM belongs on the first job, not the second.
-
-I would rather show one unfinished investigation than a row of tutorials that do not match the work I actually do.
+- [webglplayground](https://github.com/demode29/webglplayground) — a cited study series (ray–triangle, quaternions, camera/view) aimed at a vector-tile renderer.
+- [tiny-vector-renderer](https://github.com/demode29/webglplayground/tree/main/tiny-vector-renderer) — Phase 4 of that series: CPU prepares geometry, WebGL paints it.
 
 ## Currently
 
 Based in Ankara. Working on geospatial software: web maps, 3D views, and the TypeScript that holds them together.
-
-The next public project is that tiny vector-tile renderer. A map tile is protobuf before it is pixels. Unpack, clip, triangulate, pack buffers — that is CPU work, which is where WASM is actually useful. The GPU still draws. I am not interested in WASM as a faster `drawArrays`.
 
 If you are hiring for GIS, visualization, or graphics-adjacent frontend work, I am interested in talking.

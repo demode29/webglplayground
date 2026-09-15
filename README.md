@@ -1,38 +1,59 @@
 # WebGL playground
 
-This is not a product. It is a scratch notebook for 3D.
+A study series, not a pile of demos.
 
-I work with GIS and visualization for a living. Most of that work lives in private codebases, so this repo is the public trace of how I try to understand the same problems from first principles: a mesh is not a buffer, a camera is not a view matrix, and a click on a map is a ray that has to mean something in space.
+I work on GIS and 3D visualization. This repo is how I keep the underlying math honest: implement the idea, show it, cite the book I studied, and never paste the book’s code or figures.
 
-## Why this exists
+The story I want this GitHub to tell:
 
-Libraries like Cesium and Three.js are excellent. They also hide the questions I keep running into on geospatial work.
+**I understand the math → I understand the graphics pipeline → I can use the GPU → I can build a GIS renderer.**
 
-When a feature sits in the wrong place, is it a CRS problem, a transform-order problem, or a GPU upload problem? When picking fails, is the ray wrong, the depth buffer wrong, or the geometry wound the other way? I got tired of answering those only through framework internals, so I started writing the small pieces myself.
+## Phase 1 — Graphics math
 
-The code is intentionally messy. Comments trail off. Sphere generation is half-wired. Picking is a sketch. That is the point: this is thinking in public, not a portfolio demo with the edges sanded off.
+Books: Fletcher Dunn & Ian Parberry, *3D Math Primer for Graphics and Game Development*; Eric Lengyel, *Foundations of Game Engine Development, Volume 1: Mathematics*.
 
-## What I was chewing on
+| Study | Why it is here |
+| --- | --- |
+| [Ray–triangle intersection](./studies/01-ray-triangle) | Picking. A click is a ray. GIS interaction is geometry. |
+| [Quaternion rotation](./studies/02-quaternion-rotation) | Camera and object pose without gimbal poles. |
+| [Camera / view matrix](./studies/03-camera-view) | `lookAt` is a change of basis. Maps ask the same question. |
 
-**Meshes vs the GPU.** A tetrahedron is four points and four faces. What the shader sees is a flattened stream of floats. `Mesh` and `Geometries` are me making that translation explicit instead of pretending it is automatic.
-
-**Draw commands.** Once you have more than one object, “bind this, draw that” becomes a scene. Wrapping a program, a VAO, and a handful of uniforms into a command is the smallest scene graph I was willing to believe in.
-
-**Transforms as a language.** Rotation, translation, and scale sliders are not UI. They are a way to feel whether matrices are doing what I think they are doing. Orthographic projection is here because maps often start there; perspective is the next question, not the first one.
-
-**Picking.** A click is a window coordinate. The thing you wanted is in world space. The unfinished `createRay` notes are the real work of this repo: GIS interaction is geometry, not mouse events.
-
-## How to look at it
+Still ahead in this phase, same books: vectors, dot/cross, coordinate systems, matrices, MVP, ray–plane.
 
 ```bash
-yarn
-yarn dev
+cd studies
+npm install
+npm run dev
 ```
 
-Then open the local page and drag the sliders. There is one scene: a tetrahedron and a plane, plus the questions I left in the comments.
+Opens at `http://localhost:5174/`.
 
-If you are here for a polished viewer, this is the wrong repository. If you are here to see how I think about space on a screen, start in `projects/project1` and `utils/`.
+## Phase 2 — Basic raster graphics
 
-## Next
+Book: Peter Shirley & Steve Marschner, *Fundamentals of Computer Graphics*.
 
-[`tiny-vector-renderer`](./tiny-vector-renderer) is the GIS-shaped continuation: one vector tile, a CPU `prepare` step, a WebGL `paint` step. WASM is for the first step (decode and layout), not for “faster rendering.” The GPU already has that job.
+Perspective, lighting, interpolation, texturing, camera, visibility. Not started.
+
+## Phase 3 — GPU experiments
+
+Book: Tomas Akenine-Möller, Eric Haines, Naty Hoffman, *Real-Time Rendering*.
+
+Instancing, culling, LOD, shadow mapping, normal mapping, picking on the GPU. Not started.
+
+## Phase 4 — Systems project
+
+[`tiny-vector-renderer`](./tiny-vector-renderer): MVT → WASM → geometry processing → WebGL.
+
+WASM prepares buffers. WebGL paints. That split is the point.
+
+## Scratch
+
+[`projects/project1`](./projects/project1) is the original messy notebook — tetrahedron, plane, Euler sliders, an unfinished `createRay`. I left it in place so the ray–triangle study has an origin.
+
+## How I use the books
+
+I implement the concept and cite the source. I do not copy prose, diagrams, or sample listings.
+
+Example of the note I want on every study:
+
+> Implemented while studying Chapter 3 of Eric Lengyel, *Foundations of Game Engine Development, Volume 1: Mathematics*. Implementation and visualization are my own.

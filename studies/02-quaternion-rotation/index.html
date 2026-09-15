@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quaternion rotation</title>
+    <link rel="stylesheet" href="../shared/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav><a href="../index.html">Studies</a></nav>
+      <h1>Quaternion rotation</h1>
+      <p>
+        Euler angles are three knobs. At ±90° pitch two of them turn the same
+        axis. A quaternion is one rotation: an axis and an angle, with no
+        privileged sequence.
+      </p>
+      <p class="cite">
+        Implemented while studying Chapter 2.7 (Quaternions) and 2.2 (Rotations)
+        of Eric Lengyel,
+        <em>Foundations of Game Engine Development, Volume 1: Mathematics</em>.
+        The gizmos and the Euler comparison are my own — not book figures or
+        source.
+      </p>
+    </header>
+    <canvas></canvas>
+    <div class="controls">
+      <label>Euler pitch <input id="pitch" type="range" min="-180" max="180" value="0" /></label>
+      <label>Euler yaw <input id="yaw" type="range" min="-180" max="180" value="0" /></label>
+      <label>Euler roll <input id="roll" type="range" min="-180" max="180" value="0" /></label>
+      <label>Quaternion angle <input id="angle" type="range" min="0" max="360" value="35" /></label>
+    </div>
+    <div class="hud" id="hud"></div>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

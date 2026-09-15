@@ -1,18 +1,47 @@
 <!DOCTYPE html>
-
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>WebGL Playground</title>
+    <title>WebGL playground</title>
+    <style>
+      body {
+        max-width: 40rem;
+        margin: 2rem auto;
+        padding: 0 1rem;
+        font: 16px/1.5 "Iowan Old Style", Palatino, serif;
+        color: #222;
+      }
+      a {
+        color: #6a5420;
+      }
+      .cite {
+        color: #555;
+        font-size: 0.92rem;
+      }
+    </style>
   </head>
-
   <body>
-    <div>
-      <a href="./projects/project1/project1.html">
-        <button>Open the scene</button>
-      </a>
-    </div>
+    <h1>WebGL playground</h1>
+    <p>
+      Math → pipeline → GPU → GIS renderer. Run the studies locally with
+      <code>cd studies && npm install && npm run dev</code>.
+    </p>
+    <h2>Phase 1</h2>
+    <p>
+      <a href="./studies/01-ray-triangle/">Ray–triangle</a><br />
+      <a href="./studies/02-quaternion-rotation/">Quaternion rotation</a><br />
+      <a href="./studies/03-camera-view/">Camera / view</a>
+    </p>
+    <h2>Phase 4</h2>
+    <p>
+      <a href="./tiny-vector-renderer/">tiny-vector-renderer</a> — CPU prepares,
+      WebGL paints.
+    </p>
+    <h2>Scratch</h2>
+    <p><a href="./projects/project1/project1.html">Original messy scene</a></p>
+    <p class="cite">
+      Concepts from Lengyel and Dunn &amp; Parberry. Implementations are my own.
+    </p>
   </body>
 </html>
