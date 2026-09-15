@@ -6,15 +6,17 @@ I implement each study and cite the book. I do not copy book code or figures.
 
 ## Phase 1 — Graphics math
 
-Books: Fletcher Dunn & Ian Parberry, *3D Math Primer for Graphics and Game Development*; Eric Lengyel, *Foundations of Game Engine Development, Volume 1: Mathematics*.
+Book: Fletcher Dunn & Ian Parberry, *3D Math Primer for Graphics and Game Development*, 2nd Edition. Section list: [studies/README.md](./studies/README.md).
 
-| Study | What I will do |
-| --- | --- |
-| [Ray–triangle intersection](./studies/01-ray-triangle) | Implement ray–triangle intersection |
-| [Quaternion rotation](./studies/02-quaternion-rotation) | Implement quaternion rotation |
-| [Camera / view matrix](./studies/03-camera-view) | Implement camera and view matrices |
+| Study | Book | Status |
+| --- | --- | --- |
+| [01 Cartesian](./studies/01-cartesian) | Ch 1.3, 1.4.3–1.4.4 | Read |
+| [02 Vectors](./studies/02-vectors) | Ch 2.2–2.12 | Implement next |
+| [08 Quaternion rotation](./studies/08-quaternion-rotation) | Ch 8.3, 8.5, 8.7 | Later |
+| [10 Camera / view](./studies/10-camera-view) | Ch 3.2–3.3, 10.2–10.3 | Later |
+| [A16 Ray–triangle](./studies/A16-ray-triangle) | Ch 9.2, 9.6, A.9, A.16 | Later |
 
-Also: vectors, dot/cross, coordinate systems, matrices, MVP, ray–plane.
+Also from the same book: Ch 4–6 matrices / MVP, Ch 9.5 planes, A.9 ray–plane.
 
 ## Phase 2 — Basic raster graphics
 
@@ -42,4 +44,4 @@ Implement: instancing, culling, LOD, shadow mapping, normal mapping, picking.
 
 ## Citations
 
-> Implemented while studying Chapter 3 of Eric Lengyel, *Foundations of Game Engine Development, Volume 1: Mathematics*. Implementation and visualization are my own.
+> Implemented while studying Chapter 2 of Fletcher Dunn & Ian Parberry, *3D Math Primer for Graphics and Game Development*, 2nd Edition. Implementation and visualization are my own.
