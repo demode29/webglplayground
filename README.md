@@ -32,3 +32,7 @@ yarn dev
 Then open the local page and drag the sliders. There is one scene: a tetrahedron and a plane, plus the questions I left in the comments.
 
 If you are here for a polished viewer, this is the wrong repository. If you are here to see how I think about space on a screen, start in `projects/project1` and `utils/`.
+
+## Next
+
+[`tiny-vector-renderer`](./tiny-vector-renderer) is the GIS-shaped continuation: one vector tile, a CPU `prepare` step, a WebGL `paint` step. WASM is for the first step (decode and layout), not for “faster rendering.” The GPU already has that job.

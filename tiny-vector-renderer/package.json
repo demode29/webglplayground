@@ -1,0 +1,16 @@
+{
+  "name": "tiny-vector-renderer",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "description": "Tiny vector-tile renderer: CPU prepares geometry, WebGL paints it",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "vite": "^5.4.8"
+  }
+}
