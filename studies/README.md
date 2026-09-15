@@ -1,8 +1,5 @@
 # Phase 1 studies
 
-Three pages. Same math library. Cited books, original code.
+Empty on purpose. I implement these.
 
-```bash
-npm install
-npm run dev
-```
+Start with ray–triangle, quaternion rotation, and camera/view. Cite the book on each page. Do not paste book code or figures.

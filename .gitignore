@@ -2,7 +2,6 @@ node_modules/
 
 /dist
 tiny-vector-renderer/dist
-studies/dist
 
 .vscode/*
 !.vscode/settings.json

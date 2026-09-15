@@ -12,21 +12,15 @@ The story I want this GitHub to tell:
 
 Books: Fletcher Dunn & Ian Parberry, *3D Math Primer for Graphics and Game Development*; Eric Lengyel, *Foundations of Game Engine Development, Volume 1: Mathematics*.
 
+I implement these. The folders are briefs, not finished pages.
+
 | Study | Why it is here |
 | --- | --- |
 | [Ray–triangle intersection](./studies/01-ray-triangle) | Picking. A click is a ray. GIS interaction is geometry. |
 | [Quaternion rotation](./studies/02-quaternion-rotation) | Camera and object pose without gimbal poles. |
-| [Camera / view matrix](./studies/03-camera-view) | `lookAt` is a change of basis. Maps ask the same question. |
+| [Camera / view matrix](./studies/03-camera-view) | The view matrix is a change of basis. Maps ask the same question. |
 
 Still ahead in this phase, same books: vectors, dot/cross, coordinate systems, matrices, MVP, ray–plane.
-
-```bash
-cd studies
-npm install
-npm run dev
-```
-
-Opens at `http://localhost:5174/`.
 
 ## Phase 2 — Basic raster graphics
 
@@ -48,12 +42,10 @@ WASM prepares buffers. WebGL paints. That split is the point.
 
 ## Scratch
 
-[`projects/project1`](./projects/project1) is the original messy notebook — tetrahedron, plane, Euler sliders, an unfinished `createRay`. I left it in place so the ray–triangle study has an origin.
+[`projects/project1`](./projects/project1) is the original messy notebook — tetrahedron, plane, Euler sliders, an unfinished `createRay`.
 
 ## How I use the books
 
 I implement the concept and cite the source. I do not copy prose, diagrams, or sample listings.
-
-Example of the note I want on every study:
 
 > Implemented while studying Chapter 3 of Eric Lengyel, *Foundations of Game Engine Development, Volume 1: Mathematics*. Implementation and visualization are my own.

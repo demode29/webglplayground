@@ -1,9 +1,7 @@
 # Camera / view matrix
 
-`lookAt(eye, target, up)` builds the view matrix as an orthonormal frame: right, camera-up, and the axis backward along the gaze. Projection then maps that camera space to clip space.
+The camera is not a picture. It is a pose: eye, target, up.
 
-On a map this is the same sentence: where is the observer, what are they looking at, what counts as up. GIS often starts orthographic. Perspective is the same pose with a different lens.
+Show a small scene and a view I can move. The interesting output is the view matrix, not a camera icon.
 
-Drag to orbit. Wheel to dolly. The HUD is the view matrix, not a screenshot of a camera icon.
-
-Implemented while studying Chapter 2 of Eric Lengyel, *Foundations of Game Engine Development, Volume 1: Mathematics*. Implementation and visualization are my own.
+Implemented while studying Chapter 2 (Transforms, coordinate spaces) of Eric Lengyel, *Foundations of Game Engine Development, Volume 1: Mathematics*, and the camera / matrix chapters of Fletcher Dunn & Ian Parberry, *3D Math Primer for Graphics and Game Development*. Implementation and visualization are my own.

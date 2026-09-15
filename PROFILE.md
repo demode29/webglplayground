@@ -22,7 +22,7 @@ I care less about collecting tools than about making spatial software honest: co
 
 Most of my GIS and TypeScript work sits in professional code, so this profile is small on purpose.
 
-- [webglplayground](https://github.com/demode29/webglplayground) — a cited study series (ray–triangle, quaternions, camera/view) aimed at a vector-tile renderer.
+- [webglplayground](https://github.com/demode29/webglplayground) — a cited study series aimed at a vector-tile renderer. I implement the math myself.
 - [tiny-vector-renderer](https://github.com/demode29/webglplayground/tree/main/tiny-vector-renderer) — Phase 4 of that series: CPU prepares geometry, WebGL paints it.
 
 ## Currently
