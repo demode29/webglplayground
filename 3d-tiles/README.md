@@ -1,5 +1,5 @@
 # 3D Tiles
 
-Load and render OGC 3D Tiles. Not started.
+3D graphics learning series, phase 5: load and render OGC 3D Tiles. Not started.
 
 Study: OGC 3D Tiles community standard. Implementation and visualization will be my own.
