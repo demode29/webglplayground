@@ -1,6 +1,6 @@
 # tiny-vector-renderer
 
-Phase 4: vector tile renderer.
+3D graphics learning series, phase 4: vector tile renderer.
 
 - Decode MVT
 - Process geometry (WASM)

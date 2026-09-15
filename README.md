@@ -1,6 +1,6 @@
 # WebGL playground
 
-Study series: math → graphics pipeline → GPU → vector tiles → 3D Tiles.
+A 3D graphics learning series: math → graphics pipeline → GPU → vector tiles → 3D Tiles.
 
 I implement each study and cite the book. I do not copy book code or figures.
 
