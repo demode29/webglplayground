@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>tiny-vector-renderer</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        background: #1a1a1a;
+        color: #e8e4dc;
+        font: 15px/1.45 system-ui, sans-serif;
+      }
+
+      canvas {
+        display: block;
+        width: min(100vw, 100vh);
+        height: min(100vw, 100vh);
+        margin: 0 auto;
+      }
+
+      p {
+        max-width: 36rem;
+        margin: 1rem auto;
+        padding: 0 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="map" width="800" height="800"></canvas>
+    <p>
+      One tile, two jobs: <strong>prepare</strong> turns rings into buffers,
+      <strong>paint</strong> only draws. WASM belongs on the first job, not the
+      second.
+    </p>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
